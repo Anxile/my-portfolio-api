@@ -4,12 +4,16 @@ class UsersController < ApplicationController
   def index
     if is_superuser?
       @user = User.all
-    end
     render json: {
       status: {code: 200, message: 'User list.'},
       data: @user,
       current_user: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
     }, status: :ok
+    else
+      render json: {
+        status: {code: 403, message: 'You are not authorized to view this list.'}
+      }, status: :forbidden
+    end
   end
 
   def show
