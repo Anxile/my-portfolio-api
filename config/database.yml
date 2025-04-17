@@ -79,6 +79,9 @@ test:
 #
 production:
   <<: *default
-  database: myportfolio_api_production
-  username: myportfolio_api
-  password: <%= ENV["MYPORTFOLIO_API_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  database: postgres
+  username: postgres
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: my-portfolio-api.c70myqc4gq22.ca-central-1.rds.amazonaws.com
+  port: 5432
