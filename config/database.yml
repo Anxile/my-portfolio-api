@@ -80,8 +80,8 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: postgres
-  username: postgres
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: my-portfolio-api.c70myqc4gq22.ca-central-1.rds.amazonaws.com
+  host: <%= ENV['DATABASE_HOST'] %>
   port: 5432
