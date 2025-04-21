@@ -77,7 +77,7 @@ class PostsController < ApplicationController
       @post = Post.new(
         title: params[:title],
         content: params[:content],
-        user_id: now_user.id,
+        user_id: current_user.id,
         image_url: file_id
       )
     
@@ -119,19 +119,5 @@ class PostsController < ApplicationController
       end
     end
   
-    def list_files
-      response = @@drive.list_files(
-        page_size: 100,
-        fields: "files(id, name, mime_type, web_view_link, created_time)"
-      )
-      
-      response.files.each do |file|
-        puts "ID: #{file.id}"
-        puts "Name: #{file.name}"
-        puts "URL: https://drive.google.com/file/d/#{file.id}/view"
-        puts "Created: #{file.created_time}"
-        puts "---"
-      end
-    end
   end
   
